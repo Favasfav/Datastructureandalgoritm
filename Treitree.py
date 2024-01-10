@@ -12,7 +12,7 @@ class Trie:
         for char in words:
             if char not in node.children:
                 node.children[char]=Node()
-            node=node.children[char]
+            node=node.children[char] 
         node.wordend=True
     def print_trie(self, node=None, prefix=""):
         if node is None:
