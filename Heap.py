@@ -9,7 +9,7 @@ class Heap:
     def heapify(self,index):
         if index<0:
             return None
-        parent_index=len(self.heap)//2
+        parent_index=(len(self.heap)-1)//2
         
         if self.heap[parent_index]>self.heap[index]:    
             self.heap[parent_index],self.heap[index]=self.heap[index],self.heap[parent_index]
@@ -39,7 +39,7 @@ class Heap:
 
 
 min_heap = Heap()
-min_heap.insert(1)
+min_heap.insert(10)
 min_heap.insert(4)
 min_heap.insert(7)
 min_heap.insert(10)

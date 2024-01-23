@@ -89,6 +89,30 @@ def hieght(root):
       right_hieght=hieght(root.rchild)
       return max(left_hiehgt,right_hieght)+1
 
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution(object):
+    def hasCycle(self, head):
+        """
+        :type head: ListNode
+        :rtype: bool
+        """
+        n=head
+        h=n.next
+        if n is None:
+            return False
+        while n != h:
+            if n is  None or h is  None:
+                return False
+            n=n.next
+            h=h.next
+        return True    
+
+        
     # def delete(self, data):
     #     if self.key is None:
     #         print('Tree is empty')

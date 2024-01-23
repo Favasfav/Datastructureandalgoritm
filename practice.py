@@ -80,92 +80,133 @@
 
 
 # graph
-graph={}
-def addnode(node):
-    if node in graph:
-        print("node not inside the graph")
-        return 
-    graph[node]=[]
-def addvertices(v1,v2):
-    if v1 not in graph:
-        return
-    if v2 not in graph:
-        return
-    graph[v1].append(v2)
-    graph[v2].append(v1)   
+# graph={}
+# def addnode(node):
+#     if node in graph:
+#         print("node not inside the graph")
+#         return 
+#     graph[node]=[]
+# def addvertices(v1,v2):
+#     if v1 not in graph:
+#         return
+#     if v2 not in graph:
+#         return
+#     graph[v1].append(v2)
+#     graph[v2].append(v1)   
 
-def deletenode(node):
-    if node not in graph:
-        print("not in graph")
-        return
-    graph.pop(node)
-    for i in graph:
-        for j in graph[i]:
-            if j==node:
-                graph[i].pop(j)
-def deleteverices(v1,v2):
-    graph[v1].remove(v2)
-    graph[v2].remove(v1)
+# def deletenode(node):
+#     if node not in graph:
+#         print("not in graph")
+#         return
+#     graph.pop(node)
+#     for i in graph:
+#         for j in graph[i]:
+#             if j==node:
+#                 graph[i].pop(j)
+# def deleteverices(v1,v2):
+#     graph[v1].remove(v2)
+#     graph[v2].remove(v1)
 
 
-def DFS(node,graph):
-    visited=set()
-    print(node)
-    if node not in graph:
-        return
-    stack=[]
-    stack.append(node)
-    print(stack)
-    while stack:
-        current=stack.pop()
-        if current not in visited:
-            print(current,end=' ')
-            visited.add(current)
-            for i in graph[current]:
-                stack.append(i)
+# def DFS(node,graph):
+#     visited=set()
+#     print(node)
+#     if node not in graph:
+#         return
+#     stack=[]
+#     stack.append(node)
+#     print(stack)
+#     while stack:
+#         current=stack.pop()
+#         if current not in visited:
+#             print(current,end=' ')
+#             visited.add(current)
+#             for i in graph[current]:
+#                 stack.append(i)
 
-def BFS(node,graph):
-    visited=set()
-    queue=[]
-    queue.append(node)
+# def BFS(node,graph):
+#     visited=set()
+#     queue=[]
+#     queue.append(node)
     
-    while queue:
-        current=queue.pop(0)
-        if current not in visited:
-            print(current,end=" ")
-            visited.add(current)
-            for i in graph[current]:
-                queue.append(i)
-def degre(graph):
-    c=0
-    for i in graph:
+#     while queue:
+#         current=queue.pop(0)
+#         if current not in visited:
+#             print(current,end=" ")
+#             visited.add(current)
+#             for i in graph[current]:
+#                 queue.append(i)
+# def degre(graph):
+#     c=0
+#     for i in graph:
         
-            c+=len(graph[i])
-    return c        
+#             c+=len(graph[i])
+#     return c        
 
-def hieght(graph):
-    maximun=0
-    for i in graph:
-        if len(graph[i])>maximun:
-            maximun=len(graph[i])     
-    return maximun           
+# def hieght(graph):
+#     maximun=0
+#     for i in graph:
+#         if len(graph[i])>maximun:
+#             maximun=len(graph[i])     
+#     return maximun           
 
-visited=set()
-addnode('a')
-addnode('b')
-addnode('c')
-addnode('d')
-addnode('e')
-addvertices('a','b')
-addvertices('a','c')
-addvertices('d','b')
-addvertices('e','b')
-addvertices('e','c')
-print(graph)  
-# deleteverices('a','c')
+# visited=set()
+# addnode('a')
+# addnode('b')
+# addnode('c')
+# addnode('d')
+# addnode('e')
+# addvertices('a','b')
+# addvertices('a','c')
+# addvertices('d','b')
+# addvertices('e','b')
+# addvertices('e','c')
+# print(graph)  
+# # deleteverices('a','c')
  
-DFS('a',graph)
-print()
-BFS('a',graph)
-print(degre(graph))                    
-print(hieght(graph))
+# DFS('a',graph)
+# print()
+# BFS('a',graph)
+# print(degre(graph))                    
+# print(hieght(graph))
+
+
+
+
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+def is_circular_linked_list(head):
+    if not head:
+        return False
+
+    tortoise = head
+    hare = head.next
+
+    while hare and hare.next:
+        if tortoise == hare:
+            return True  # Linked list is circular
+        tortoise = tortoise.next
+        hare = hare.next.next
+
+    return False  # Linked list is not circular
+
+# Example usage:
+
+# Creating a circular linked list
+node1 = Node(1)
+node2 = Node(2)
+node3 = Node(3)
+node4 = Node(4)
+
+node1.next = node2
+node2.next = node3
+node3.next = node4
+node4.next = node3  # Make it circular
+
+# Check if the linked list is circular
+result = is_circular_linked_list(node1)
+
+print("Is the linked list circular?", result)
